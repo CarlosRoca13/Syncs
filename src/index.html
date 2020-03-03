@@ -12,25 +12,47 @@
 
 <body>
 
-  <nav>
-    <div class="nav-wrapper black">
-      <div class="row">
-        <div class="col s3">
-          <a href="#" class="brand-logo">Syncs</a>
+  <div class="navbar-fixed">
+    <nav class="black">
+        <div class="nav-wrapper">
+            <ul class="left">
+                <li>
+                    <a>
+                        <i class="hamburger material-icons hide-on-med-and-up">menu</i>
+                    </a>
+                </li>
+            </ul>
+                <form action="" method="post">
+                    <div class="input-field">
+                        <input id="search" type="search" name="search">
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+            <ul class="right">
+                <li>
+                    <a>
+                        <i class="material-icons">notifications_none</i>
+                    </a>
+                </li>
+                <li class="imgProfil">
+                    <img src="http://maxpixel.freegreatpicture.com/static/photo/1x/Redhead-Girl-Person-People-Woman-Female-Avatar-995164.png" alt="" class="circle">
+                </li>
+                    <ul id="AccountInfo" class="hidden z-depth-5">
+                        <li>sdfsdf</li>
+                        <li>fghfgh</li>
+                        <li>jkjkljkljkl</li>
+                        <li>xwcxwcwxcwxc</li>
+                    </ul>
+                <li>
+                    <a href="">
+                        <i class="material-icons">exit_to_app</i>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <form class="col s6">
-          <div class="input-field s6 white">
-            <input id="search" type="search" required>
-            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-            <i class="material-icons">close</i>
-          </div>
-        </form>
-        <div class="col s3" style="padding: 5px; margin: auto;">
-          <a class=" right btn-large white black-text"><i class="material-icons right" style="margin: auto;">person</i>Sign up</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
+</div>
 
 </body>
 
