@@ -1,4 +1,4 @@
-const pool = require('./prueba')
+const { pool } = require('./tunnel.js')
 
 const getUsers = async (req, res) => {
     const response = await pool.query('SELECT * FROM users');
@@ -53,4 +53,5 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser
-}
+}    
+
