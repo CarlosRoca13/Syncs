@@ -1,48 +1,30 @@
-:root{
-    --primary:black;
-    --secondary:#black;
-    --terciary:#black
-}
-
-nav{
-    padding: 0 10px 0 10px;
-    background-color: var(--primary);
-}
-
-nav .right{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
-
-
-
-.nav-wrapper form{
-    margin: auto;
-    width: 50%;
-}
-
-.nav-wrapper .input-field{
-    padding-top: 7px;
-}
-
-.nav-wrapper form #search{
-    height: 50px;
-}
-
-
-nav .right img{
-    margin: 17px;
-    height: 30px;
-    width: 30px;
-    border: 2px solid white;
-    cursor: pointer;
-}
-
-nav .right .imgProfil a{
-    height: 64px;
-}
-
-.hidden{
-    display: none;
-}
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 80;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #a7a6a6;
+    display: block;
+    
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .hr-sidebar{
+      color: white;
+      background-color: white;
+      width: 80%;
+  }
