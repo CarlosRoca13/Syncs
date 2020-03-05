@@ -62,7 +62,7 @@ CREATE TABLE Comment (
     response varchar(90)  NOT NULL,
     likes int  NOT NULL,
     dislikes int  NOT NULL,
-    CONSTRAINT playlistItem_pk PRIMARY KEY (commentId),
-    CONSTRAINT playlistItem_fk FOREIGN KEY (clientId) references Client ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT playlistItemSheet_fk FOREIGN KEY (sheetId) references Sheet ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT comment_pk PRIMARY KEY (commentId),
+    CONSTRAINT comment_fk FOREIGN KEY (clientId) references Client ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT comment_sheet_fk FOREIGN KEY (sheetId) references Sheet ON DELETE RESTRICT ON UPDATE CASCADE
     );
