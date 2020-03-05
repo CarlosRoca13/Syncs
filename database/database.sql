@@ -23,6 +23,7 @@ CREATE TABLE Sheet (
     dislikes int  NOT NULL,
     views int  NOT NULL,
     downloads int  NOT NULL,
+    image TEXT NULL,
     CONSTRAINT sheet_pk PRIMARY KEY (sheetId),
     CONSTRAINT sheet_Fk FOREIGN KEY (clientId) references Client ON DELETE RESTRICT ON UPDATE CASCADE
 );
