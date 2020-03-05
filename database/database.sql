@@ -1,20 +1,20 @@
-CREATE TABLE User (
-    userId varchar(9)  NOT NULL,
+CREATE TABLE Client (
+    clientId varchar(9)  NOT NULL,
     name varchar(30)  NOT NULL,
     lastName varchar(60)  NOT NULL,
     email varchar(30)  NOT NULL,
-    username varchar(20)  NOT NULL,
+    clientname varchar(20)  NOT NULL,
     password varchar(20)  NOT NULL,
     verified char(1)  NOT NULL,
     avatar varchar(50) NOT NULL,
     birthday date NOT NULL,
-    CONSTRAINT user_pk PRIMARY KEY (userId)
+    CONSTRAINT client_pk PRIMARY KEY (clientId)
     );
 
 CREATE TABLE Sheet (
     sheetId varchar(9)  NOT NULL,
     name varchar(30)  NOT NULL,
-    userId varchar(60)  NOT NULL,
+    clientId varchar(60)  NOT NULL,
     description varchar(60)  NOT NULL,
     pdf varchar(20)  NOT NULL,
     key varchar(20)  NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE Sheet (
     views int  NOT NULL,
     downloads int  NOT NULL,
     CONSTRAINT sheet_pk PRIMARY KEY (sheetId),
-    CONSTRAINT sheet_Fk FOREIGN KEY (userId) references User ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT sheet_Fk FOREIGN KEY (clientId) references Client ON DELETE RESTRICT ON UPDATE CASCADE
     );
 
 CREATE TABLE SheetInstrument (
@@ -37,12 +37,12 @@ CREATE TABLE SheetInstrument (
 
 CREATE TABLE Playlist (
     playlistId varchar(9)  NOT NULL,
-    userId varchar(9)  NOT NULL,
+    clientId varchar(9)  NOT NULL,
     name varchar(60)  NOT NULL,
     image varchar(50)  NOT NULL,
     description varchar(60)  NOT NULL,
     CONSTRAINT playlist_pk PRIMARY KEY (playlistId),
-    CONSTRAINT playlist_fk FOREIGN KEY (userId) references User ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT playlist_fk FOREIGN KEY (clientId) references Client ON DELETE RESTRICT ON UPDATE CASCADE
     );
 
 CREATE TABLE PlaylistItem (
@@ -55,7 +55,7 @@ CREATE TABLE PlaylistItem (
 
 CREATE TABLE Comment (
     commentId varchar(9)  NOT NULL,
-    userId varchar(9)  NOT NULL,
+    clientId varchar(9)  NOT NULL,
     sheetId varchar(9)  NOT NULL,
     dateTime date NOT NULL,
     description varchar(60)  NOT NULL,
@@ -63,6 +63,6 @@ CREATE TABLE Comment (
     likes int  NOT NULL,
     dislikes int  NOT NULL,
     CONSTRAINT playlistItem_pk PRIMARY KEY (commentId),
-    CONSTRAINT playlistItem_fk FOREIGN KEY (userId) references User ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT playlistItem_fk FOREIGN KEY (clientId) references Client ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT playlistItemSheet_fk FOREIGN KEY (sheetId) references Sheet ON DELETE RESTRICT ON UPDATE CASCADE
     );
