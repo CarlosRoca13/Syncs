@@ -1,42 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Syncs | Home Page</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <title>Syncs | Home Page</title>
-</head>
+  <body>
+    <nav class="navbar navbar-dark b">
+      <a class="navbar-brand btn"
+        ><img src="assets/images/syncs.png" alt="logo" width="125"
+      /></a>
 
-<body>
-  <nav class="navbar navbar-dark bg-dark">
+      <div class="">
+        <form class="form-inline">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search an artist or a song"
+            aria-label="Search"
+            style="width: 600px;"
+          />
+        </form>
+      </div>
 
-    <a class="navbar-brand btn">Syncs</a>
+      <div>
+        <a href="#" class="btn text-light">Login</a>
+        <a href="#"
+          ><button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+            Sign Up
+          </button></a
+        >
+      </div>
+    </nav>
+
+    <div class="sidenav">
+      <a href="#">Sheets</a>
+      <hr class="hr-sidebar" />
+      <a href="#">Artists</a>
+      <hr class="hr-sidebar" />
+      <a href="#">Playlists</a>
+      <hr class="hr-sidebar" />
+    </div>
+
+    <div class="main">
+      
+      <script id="v-carousel" type="x/template">
+        <div class="card-carousel-wrapper">
+            <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+            <div class="card-carousel">
+                <div class="card-carousel--overflow-container">
+                    <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
+                        <div class="card-carousel--card" v-for="item in items"><img src="https://placehold.it/200x200" />
+                            <div class="card-carousel--card--footer">
+                                <p>{{ item.name }}</p>
+                                <p class="tag" v-for="(tag,index) in item.tag" :class="index &gt; 0 ? 'secondary' : ''">{{ tag }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+        </div>
+      </script>
+
+      <div id="app">
+        <carousel></carousel>
+      </div>
+
+    </div>
+
     
-    <div class="">
-    <form class="form-inline">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 600px;">
-    </form>
-    </div>
-
-    <div>
-      <a href="#" class="btn text-light">Login</a>
-      <a href="#"><button class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign Up</button></a>
-    </div>
-  </nav>
-
-  <div class="sidenav">
-    <a href="#">Sheets</a>
-    <hr class="hr-sidebar"/>
-    <a href="#">Artists</a>
-    <hr class="hr-sidebar"/>
-    <a href="#">Playlists</a>
-    <hr class="hr-sidebar"/>
-
-  </div>
-
-</body>
-
+    <script src="components/songCard.js"></script>
+  </body>
 </html>
