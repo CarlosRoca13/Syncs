@@ -16,7 +16,6 @@ CREATE TABLE Sheet (
     name varchar(30)  NOT NULL,
     clientId INTEGER NOT NULL,
     description TEXT NOT NULL,
-    pdf TEXT NOT NULL,
     key varchar(20)  NOT NULL,
     mainGenre varchar(30)  NOT NULL,
     likes int  NOT NULL,
@@ -29,9 +28,10 @@ CREATE TABLE Sheet (
 );
 
 CREATE TABLE SheetInstrument (
-    sheetId SERIAL NOT NULL,
+    sheetId INTEGER NOT NULL,
     instrument varchar(30)  NOT NULL,
     effects varchar(60)  NOT NULL,
+    pdf TEXT NOT NULL,
     CONSTRAINT sheetInstrument_pk PRIMARY KEY (sheetId, instrument),
     CONSTRAINT sheetInstrument_fk FOREIGN KEY (sheetId) references Sheet ON DELETE RESTRICT ON UPDATE CASCADE
 );
@@ -66,5 +66,5 @@ CREATE TABLE Comment (
     CONSTRAINT comment_pk PRIMARY KEY (commentId),
     CONSTRAINT comment_fk FOREIGN KEY (clientId) references Client ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT comment_sheet_fk FOREIGN KEY (sheetId) references Sheet ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT comment_comment_fk FOREIGN KEY (commentId) references Comment ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT comment_comment_fk FOREIGN KEY (response) references Comment (commentId) ON DELETE CASCADE ON UPDATE CASCADE
 );
