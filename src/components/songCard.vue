@@ -1,46 +1,68 @@
-/*Sidebar css
-================================================================================================================================*/
-.sidenav {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 80;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
-  }
-  
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #a7a6a6;
-    display: block;
-    
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  .hr-sidebar{
-      color: white;
-      background-color: white;
-      width: 80%;
-  }
+<template>
+    <div class="card-carousel-wrapper">
+              <div class="card-carousel--nav__left" @click="moveCarousel(-1)" :disabled="atHeadOfList"></div>
+              <div class="card-carousel">
+                  <div class="card-carousel--overflow-container">
+                      <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
+                          <div class="card-carousel--card" v-for="item in items"><img src="https://placehold.it/200x200" />
+                              <div class="card-carousel--card--footer">
+                                  <p>{{ item.name }}</p>
+                                  <p class="tag" v-for="(tag,index) in item.tag" :class="index &gt; 0 ? 'secondary' : ''">{{ tag }}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-carousel--nav__right" @click="moveCarousel(1)" :disabled="atEndOfList"></div>
+          </div>
+</template>
 
-.main{
-  margin-left: 200px; 
-  margin-top: 10px;
-  padding: 0px 10px;
-}
+<script>
+    Vue.component("carousel", {
+  template: "#v-carousel",
+  data() {
+    return {
+      currentOffset: 0,
+      windowSize: 3,
+      paginationFactor: 220,
+      items: [
+        { name: 'Kin Khao', tag: ["Thai"] },
+        { name: 'Jū-Ni', tag: ["Sushi", "Japanese", "$$$$"] },
+        { name: 'Delfina', tag: ["Pizza", "Casual"] },
+        { name: 'San Tung', tag: ["Chinese", "$$"] },
+        { name: 'Anchor Oyster Bar', tag: ["Seafood", "Cioppino"] },
+        { name: 'Locanda', tag: ["Italian"] },
+        { name: 'Garden Creamery', tag: ["Ice cream"] },
+      ]
+    }
+  },
+  computed: {
+    atEndOfList() {
+      return this.currentOffset <= (this.paginationFactor * -1) * (this.items.length - this.windowSize);
+    },
+    atHeadOfList() {
+      return this.currentOffset === 0;
+    },
+  },
+  methods: {
+    moveCarousel(direction) {
+      // Find a more elegant way to express the :style. consider using props to make it truly generic
+      if (direction === 1 && !this.atEndOfList) {
+        this.currentOffset -= this.paginationFactor;
+      } else if (direction === -1 && !this.atHeadOfList) {
+        this.currentOffset += this.paginationFactor;
+      }
+    },
+  }
+});
 
-/*Songs cards
-================================================================================================================================*/
+new Vue({
+    el:'#vue-carousel'
+})
+</script>
 
-.card-carousel-wrapper {
+<style scoped>
+    .card-carousel-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,10 +187,5 @@
   border-radius: 2px;
   box-shadow: 0px 0px 0px #004977;
 }
+</style>
 
-/*==========================================================================*/
-.display-songs-container{
-  margin-top: 15px;
-  margin-left: 15px;
-  
-}
