@@ -1,35 +1,12 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getClients, 
-    getClientById, 
-    createClient, 
-    updateClient, 
-    deleteClient, 
-    getSheets, 
-    getSheetById, 
-    createSheet, 
-    updateSheet, 
-    deleteSheet, 
-    getSheetInstruments,
-    getSheetsInstrumentById, 
-    createSheetInstrument, 
-    updateSheetInstrument, 
-    deleteSheetInstrument,
-    getPlaylists,
-    getPlaylistById,
-    createPlaylist,
-    updatePlaylist,
-    deletePlaylist,
-    getPlaylistItems,
-    getPlaylistItemsById,
-    createPlaylistItem,
-    deletePlaylistItem,
-    getComments,
-    getCommentById,
-    createComment,
-    deleteComment
-} = require('../controllers/index.controller');
+const { getClients, getClientById, createClient, updateClient, deleteClient } = require('../controllers/client.controller');
+const { getSheets, getSheetById, createSheet, updateSheet, deleteSheet } = require('../controllers/sheet.controller');
+const { getSheetInstruments, getSheetsInstrumentById, createSheetInstrument, updateSheetInstrument, deleteSheetInstrument } = require('../controllers/sheetinstrument.controller');
+const { getPlaylists, getPlaylistById, createPlaylist, updatePlaylist, deletePlaylist } = require('../controllers/playlist.controller');
+const { getPlaylistItems, getPlaylistItemsById, createPlaylistItem, deletePlaylistItem } = require('../controllers/playlistitem.controller');
+const { getComments, getCommentById, createComment, deleteComment } = require('../controllers/comment.controller');
 
 // Clients --
 router.get('/clients', getClients);
