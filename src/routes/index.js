@@ -7,6 +7,7 @@ const { getSheetInstruments, getSheetsInstrumentById, createSheetInstrument, upd
 const { getPlaylists, getPlaylistById, createPlaylist, updatePlaylist, deletePlaylist } = require('../controllers/playlist.controller');
 const { getPlaylistItems, getPlaylistItemsById, createPlaylistItem, deletePlaylistItem } = require('../controllers/playlistitem.controller');
 const { getComments, getCommentById, createComment, deleteComment } = require('../controllers/comment.controller');
+const { getSearch } = require('../controllers/search.controller');
 
 // Clients --
 router.get('/clients', getClients);
@@ -47,5 +48,8 @@ router.get('/comments', getComments);
 router.get('/comments/:id', getCommentById);
 router.post('/comments', createComment);
 router.delete('/comments/:id', deleteComment);
+
+// Search --
+router.get('/search', getSearch);
 
 module.exports = router;
