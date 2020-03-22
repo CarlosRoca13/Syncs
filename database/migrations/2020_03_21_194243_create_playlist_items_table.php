@@ -21,6 +21,7 @@ class CreatePlaylistItemsTable extends Migration
 
             $table->foreign('playlistId')->references('id')->on('playlists');
             $table->foreign('sheetId')->references('id')->on('sheets');
+            $table->unique(['playlistId', 'sheetId']);
         });
     }
 

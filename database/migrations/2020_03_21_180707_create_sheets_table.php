@@ -20,11 +20,11 @@ class CreateSheetsTable extends Migration
             $table->string('description');
             $table->string('key');
             $table->string('mainGenre');
-            $table->integer('likes')->unserialize();
-            $table->integer('dislikes')->unserialize();
-            $table->integer('views')->unserialize();
-            $table->integer('downloads')->unserialize();
-            $table->string('image');
+            $table->integer('likes')->unsigned();
+            $table->integer('dislikes')->unsigned();
+            $table->integer('views')->unsigned();
+            $table->integer('downloads')->unsigned();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
