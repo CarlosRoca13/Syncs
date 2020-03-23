@@ -10,8 +10,8 @@ class PlaylistItem extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'clientId',
-        'sheetId',
+        'playlists_id',
+        'sheets_id',
     ];
 
     protected $dates = ['deleted_at'];

@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->string('verified');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->date('birthday');
             $table->timestamps();
             $table->softDeletes();

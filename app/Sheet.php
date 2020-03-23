@@ -20,7 +20,7 @@ class Sheet extends Model
         'likes',
         'dislikes',
         'views',
-        'downolads',
+        'downloads',
         'image',
     ];
     

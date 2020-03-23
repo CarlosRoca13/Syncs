@@ -25,9 +25,9 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('clientId')->references('id')->on('clients');
-            $table->foreign('sheetId')->references('id')->on('sheets');
-            $table->foreign('response')->references('id')->on('comments');
+            $table->foreign('clientId')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('sheetId')->references('id')->on('sheets')->onDelete('cascade');
+            $table->foreign('response')->references('id')->on('comments')->onDelete('cascade');
         });
     }
 

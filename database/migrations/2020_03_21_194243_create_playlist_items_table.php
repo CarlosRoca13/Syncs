@@ -14,14 +14,14 @@ class CreatePlaylistItemsTable extends Migration
     public function up()
     {
         Schema::create('playlist_items', function (Blueprint $table) {
-            $table->unsignedBigInteger('playlistId');
-            $table->unsignedBigInteger('sheetId');
+            $table->unsignedBigInteger('playlists_id');
+            $table->unsignedBigInteger('sheets_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('playlistId')->references('id')->on('playlists');
-            $table->foreign('sheetId')->references('id')->on('sheets');
-            $table->unique(['playlistId', 'sheetId']);
+            $table->foreign('playlists_id')->references('id')->on('playlists');
+            $table->foreign('sheets_id')->references('id')->on('sheets');
+            $table->unique(['playlists_id', 'sheets_id']);
         });
     }
 

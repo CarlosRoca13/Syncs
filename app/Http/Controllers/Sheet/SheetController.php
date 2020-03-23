@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Sheet;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\DB;
 
 class SheetController extends ApiController
 {

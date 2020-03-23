@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\PlaylistItem;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\DB;
 
 class PlaylistItemController extends ApiController
 {
@@ -48,9 +49,12 @@ class PlaylistItemController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(PlaylistItem $playlistitem)
+    public function show($playlist, $sheetId)
     {
-        return $this->showOne($playlistitem);
+        return DB::select('SELECT * FROM playlist_items WHERE playlists_id = :playlist AND sheets_id = :sheetId', [
+            'playlist' => $playlist,
+            'sheetId' => $sheetId,
+        ]);
     }
 
     /**
@@ -82,13 +86,11 @@ class PlaylistItemController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlaylistItem $playlistitem) // TO-DO: Hay que corregirlo
+    public function destroy($playlist, $sheetId)
     {
-        // $playlistitem->delete();
-        // DB::delete('DELETE FROM playlistitems WHERE sheetId = :sheet AND playlistId = :playlist',[
-        //     'sheet' => $playlistitem['sheetId'],
-        //     'playlist' => $playlistitem['playlistId'],
-        // ]);
-        // return $this->showOne($playlistitem);
+        return DB::delete('DELETE FROM playlist_items WHERE sheets_id = :sheet AND playlists_id = :playlist',[
+            'sheet' => $sheetId,
+            'playlist' => $playlist,
+        ]); 
     }
 }
