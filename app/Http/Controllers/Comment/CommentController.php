@@ -85,7 +85,7 @@ class CommentController extends ApiController
     public function destroy(Comment $comment)
     {
         $comment->delete();
-
+        DB::delete('DELETE FROM comments WHERE id=?',[$comment['id']]);
         return $this->showOne($comment);
     }
 }

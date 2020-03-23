@@ -82,10 +82,13 @@ class PlaylistItemController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PlaylistItem $playlistitem)
+    public function destroy(PlaylistItem $playlistitem) // TO-DO: Hay que corregirlo
     {
-        $playlistitem->delete();
-
-        return $this->showOne($playlistitem);
+        // $playlistitem->delete();
+        // DB::delete('DELETE FROM playlistitems WHERE sheetId = :sheet AND playlistId = :playlist',[
+        //     'sheet' => $playlistitem['sheetId'],
+        //     'playlist' => $playlistitem['playlistId'],
+        // ]);
+        // return $this->showOne($playlistitem);
     }
 }

@@ -94,10 +94,13 @@ class SheetInstrumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SheetInstrument $sheetinstrument)
+    public function destroy(SheetInstrument $sheetinstrument) // TO-DO: Hay que corregirlo
     {
-        $sheetinstrument->delete();
-
-        return $this->showOne($sheetinstrument);
+        // $sheetinstrument->delete();
+        // DB::delete('DELETE FROM playlistitems WHERE sheetId = :sheet AND instrument = :instrument',[
+        //     'sheet' => $sheetinstrument['sheetId'],
+        //     'instrument' => $sheetinstrument['instrument'],
+        // ]);
+        // return $this->showOne($sheetinstrument);
     }
 }

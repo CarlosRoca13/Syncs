@@ -9,3 +9,4 @@ Route::resource('sheetinstrument', 'SheetInstrument\SheetInstrumentController', 
 Route::resource('playlist', 'Playlist\PlaylistController', ['except'=>['create', 'edit']]);
 Route::resource('playlistitem', 'PlaylistItem\PlaylistItemController', ['except'=>['create', 'edit', 'update']]);
 Route::resource('comments', 'Comment\CommentController', ['except'=>['create', 'edit', 'update']]);
+Route::resource('search', 'Search\SearchController', ['except'=>['create', 'store', 'show', 'edit', 'update', 'destroy']]);

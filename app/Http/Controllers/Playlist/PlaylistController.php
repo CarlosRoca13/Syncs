@@ -97,7 +97,7 @@ class PlaylistController extends ApiController
     public function destroy(Playlist $playlist)
     {
         $playlist->delete();
-
+        DB::delete('DELETE FROM playlists WHERE id=?',[$playlist['id']]);
         return $this->showOne($playlist);
     }
 }

@@ -1,23 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Sheet;
+namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Sheet;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApiController;
 
-class SheetController extends ApiController
+class SearchController extends ApiController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sheets = Sheet::all();
-        return $this->showAll($sheets);
+        $name = $request['name'];
+        return DB::select('SELECT COALESCE(s.name, \'NO RESULTS\') as sheet, COALESCE(c.name, \'NO RESULTS\') as client, COALESCE(p.name, \'NO RESULTS\') as playlist FROM sheets as s FULL JOIN clients as c USING(name) FULL JOIN playlists as p USING(name)WHERE name like :name',['name'=> '%' . $name . '%']);
+        
     }
 
     /**
@@ -38,8 +39,7 @@ class SheetController extends ApiController
      */
     public function store(Request $request)
     {
-        $sheet = Sheet::create($request->all());
-        return $this->showOne($sheet, 201);
+        //
     }
 
     /**
@@ -48,9 +48,9 @@ class SheetController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sheet $sheet)
+    public function show($id)
     {
-        return $this->showOne($sheet);
+        //
     }
 
     /**
@@ -71,27 +71,9 @@ class SheetController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sheet $sheet)
+    public function update(Request $request, $id)
     {
-        $sheet->fill($request->only([
-            'name',
-            'clientId',
-            'description',
-            'key',
-            'mainGenre',
-            'likes',
-            'dislikes',
-            'views',
-            'downolads',
-            'image',
-        ]));
-
-        if($sheet->isClean()){
-            return $this->errorResponse('Debe especificar al menos un valor diferente para actuaizar', 422);
-        }
-        $sheet->save();
-
-        return $this->showOne($sheet);
+        //
     }
 
     /**
@@ -100,10 +82,8 @@ class SheetController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sheet $sheet)
+    public function destroy($id)
     {
-        $sheet->delete();
-        DB::delete('DELETE FROM sheets WHERE id=?',[$sheet['id']]);
-        return $this->showOne($sheet);
+        //
     }
 }

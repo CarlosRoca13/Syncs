@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Client;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends ApiController
 {
@@ -101,7 +102,7 @@ class ClientController extends ApiController
     public function destroy(Client $client)
     {
         $client->delete();
-
+        DB::delete('DELETE FROM CLIENTS WHERE id=?',[$client['id']]);
         return $this->showOne($client);
     }
 }
