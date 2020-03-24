@@ -39,8 +39,14 @@ class SheetInstrumentController extends ApiController
      */
     public function store(Request $request)
     {
-        $sheetinstrument = Sheet::create($request->all());
-        return $this->showOne($sheetinstrument, 201);
+        $pdf = $request->pdf->store('pdf', 'local');
+        DB::table('sheet_instruments')->insert([
+            'sheets_id' => $request['sheetId'],
+            'instrument' => $request['instrument'],
+            'effects' => $request['effects'],
+            'pdf' => $pdf,
+        ]);
+        
     }
 
     /**
