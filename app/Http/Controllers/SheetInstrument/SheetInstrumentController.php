@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\SheetInstrument;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SheetInstrumentController extends ApiController
 {
@@ -17,8 +18,12 @@ class SheetInstrumentController extends ApiController
      */
     public function index()
     {
-        $sheetinstruments = SheetInstrument::all();
-        return $this->showAll($sheetinstruments);
+        $secuence = DB::select('SELECT * FROM sheet_instruments');
+        foreach ($secuence as $si) {
+            $contents = Storage::response($si->pdf);
+            $si->pdf = $contents;
+        }
+        return $secuence;
     }
 
     /**
@@ -57,10 +62,13 @@ class SheetInstrumentController extends ApiController
      */
     public function show($sheetid, $instrument)
     {
-        return DB::select('SELECT * FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
+        $secuence = DB::select('SELECT * FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
             'sheetid' => $sheetid,
             'instrument' => $instrument,
         ]);
+        $contents = Storage::response($secuence[0]->pdf);
+        $secuence[0]->pdf = $contents;
+        return $secuence[0]->pdf;
     }
 
     /**

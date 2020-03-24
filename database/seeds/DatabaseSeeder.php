@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'sheets_id' => 1,
             'instrument' => Str::random(10),
             'effects' => Str::random(10).'@gmail.com',
-            'pdf' => Str::random(10),
+            'pdf' => 'pdf/prueba.pdf',
         ]);
 
         DB::table('playlists')->insert([
