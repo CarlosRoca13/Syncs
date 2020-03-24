@@ -12,7 +12,7 @@ class SheetInstrument extends Model
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        'sheetId',
+        'sheets_id',
         'instrument',
         'effects',
         'pdf',

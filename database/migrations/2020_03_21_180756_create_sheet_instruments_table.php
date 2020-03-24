@@ -14,15 +14,15 @@ class CreateSheetInstrumentsTable extends Migration
     public function up()
     {
         Schema::create('sheet_instruments', function (Blueprint $table) {
-            $table->unsignedBigInteger('sheetId');
+            $table->unsignedBigInteger('sheets_id');
             $table->string('instrument');
             $table->string('effects');
             $table->string('pdf');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('sheetId')->references('id')->on('sheets');
+            $table->foreign('sheets_id')->references('id')->on('sheets');
 
-            $table->unique(['sheetId', 'instrument']);
+            $table->unique(['sheets_id', 'instrument']);
         });
     }
 

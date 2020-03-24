@@ -49,9 +49,12 @@ class SheetInstrumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SheetInstrument $sheetinstrument)
+    public function show($sheetid, $instrument)
     {
-        return $this->showOne($sheetinstrument);
+        return DB::select('SELECT * FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
+            'sheetid' => $sheetid,
+            'instrument' => $instrument,
+        ]);
     }
 
     /**
@@ -72,21 +75,16 @@ class SheetInstrumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SheetInstrument $sheetinstrument)
+    public function update(Request $request, $sheetid, $instrument)
     {
-        $sheetinstrument->fill($request->only([
-            'sheetId',
-            'instrument',
-            'effects',
-            'pdf',
-        ]));
-
-        if($sheetinstrument->isClean()){
-            return $this->errorResponse('Debe especificar al menos un valor diferente para actuaizar', 422);
-        }
-        $sheetinstrument->save();
-
-        return $this->showOne($sheetinstrument);
+        return DB::update('UPDATE sheet_instruments SET sheets_id = :sheetid, instrument = :instrument, effects = :effects, pdf = :pdf WHERE sheets_id = :psheetid AND instrument = :pinstrument',[
+            'sheetid' => $request['sheetId'],
+            'instrument' => $request['instrument'],
+            'effects' => $request['effects'],
+            'pdf' => $request['pdf'],
+            'psheetid' => $sheetid,
+            'pinstrument' => $instrument,
+        ]);
     }
 
     /**
@@ -95,13 +93,11 @@ class SheetInstrumentController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SheetInstrument $sheetinstrument) // TO-DO: Hay que corregirlo
-    {
-        // $sheetinstrument->delete();
-        // DB::delete('DELETE FROM playlistitems WHERE sheetId = :sheet AND instrument = :instrument',[
-        //     'sheet' => $sheetinstrument['sheetId'],
-        //     'instrument' => $sheetinstrument['instrument'],
-        // ]);
-        // return $this->showOne($sheetinstrument);
+    public function destroy($sheetid, $instrument) // TO-DO: Hay que corregirlo
+    {   
+        return DB::delete('DELETE FROM sheet_instruments WHERE sheets_id = :sheet AND instrument = :instrument',[
+            'sheet' => $sheetid,
+            'instrument' => $instrument,
+        ]);
     }
 }

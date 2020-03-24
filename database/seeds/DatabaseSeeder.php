@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('sheet_instruments')->insert([
-            'sheetId' => 1,
+            'sheets_id' => 1,
             'instrument' => Str::random(10),
             'effects' => Str::random(10).'@gmail.com',
             'pdf' => Str::random(10),
