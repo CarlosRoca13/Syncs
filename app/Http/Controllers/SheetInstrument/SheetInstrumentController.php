@@ -62,13 +62,25 @@ class SheetInstrumentController extends ApiController
      */
     public function show($sheetid, $instrument)
     {
-        $secuence = DB::select('SELECT * FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
+        return DB::select('SELECT sheets_id, instrument, effects FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
             'sheetid' => $sheetid,
             'instrument' => $instrument,
         ]);
-        $contents = Storage::response($secuence[0]->pdf);
-        $secuence[0]->pdf = $contents;
-        return $secuence[0]->pdf;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showpdf($sheetid, $instrument)
+    {
+        $secuence = DB::select('SELECT pdf FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
+            'sheetid' => $sheetid,
+            'instrument' => $instrument,
+        ]);
+        return Storage::response($secuence[0]->pdf);
     }
 
     /**

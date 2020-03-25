@@ -15,4 +15,5 @@ Route::delete('/playlistitem/{playlistID}/{sheetID}','PlaylistItem\PlaylistItemC
 Route::get('/playlistitem/{playlistID}/{sheetID}','PlaylistItem\PlaylistItemController@show')->name('playlistitem.show');
 Route::delete('/sheetinstrument/{playlistID}/{sheetID}','SheetInstrument\SheetInstrumentController@destroy')->name('sheetinstrument.destroy');
 Route::get('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@show')->name('sheetinstrument.show');
+Route::get('/sheetinstrument/pdf/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@showpdf')->name('sheetinstrument.showpdf');
 Route::put('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@update')->name('sheetinstrument.update');
