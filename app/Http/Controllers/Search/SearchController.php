@@ -17,7 +17,7 @@ class SearchController extends ApiController
     public function index(Request $request)
     {
         $name = $request['name'];
-        return DB::select('SELECT COALESCE(s.name, \'NO RESULTS\') as sheet, COALESCE(c.name, \'NO RESULTS\') as client, COALESCE(p.name, \'NO RESULTS\') as playlist FROM sheets as s FULL JOIN clients as c USING(name) FULL JOIN playlists as p USING(name)WHERE name like :name',['name'=> '%' . $name . '%']);
+        return DB::select('SELECT COALESCE(s.name, NULL) as sheet, COALESCE(s.id, NULL) as sheetid, COALESCE(c.name, NULL) as client, COALESCE(c.id, NULL) as clientId, COALESCE(p.name, NULL) as playlist, COALESCE(p.id, NULL) as playlistId FROM sheets as s FULL JOIN clients as c USING(name) FULL JOIN playlists as p USING(name)WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);
         
     }
 
