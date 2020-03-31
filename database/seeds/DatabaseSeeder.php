@@ -23,10 +23,10 @@ class DatabaseSeeder extends Seeder
 
         DB::table('sheets')->insert([
             'name' => Str::random(10),
-            'clientId' => 1,
+            'clients_id' => 1,
             'description' => Str::random(10),
             'key' => Str::random(10),
-            'mainGenre' => Str::random(10),
+            'main_genre' => Str::random(10),
             'likes' => 0,
             'dislikes' => 0,
             'views' => 0,

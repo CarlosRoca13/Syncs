@@ -16,10 +16,10 @@ class CreateSheetsTable extends Migration
         Schema::create('sheets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('clientId');
+            $table->unsignedBigInteger('clients_id');
             $table->string('description');
             $table->string('key');
-            $table->string('mainGenre');
+            $table->string('main_genre');
             $table->integer('likes')->unsigned();
             $table->integer('dislikes')->unsigned();
             $table->integer('views')->unsigned();
@@ -28,7 +28,7 @@ class CreateSheetsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('clientId')->references('id')->on('clients');
+            $table->foreign('clients_id')->references('id')->on('clients');
         });
     }
 

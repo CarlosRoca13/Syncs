@@ -13,10 +13,10 @@ class Sheet extends Model
 
     protected $fillable = [
         'name',
-        'clientId',
+        'clients_id',
         'description',
         'key',
-        'mainGenre',
+        'main_genre',
         'likes',
         'dislikes',
         'views',

@@ -51,7 +51,7 @@ class SheetController extends ApiController
      */
     public function show(Sheet $sheet)
     {
-        return $this->showOne($sheet);
+        return DB::select('SELECT s.name, c.username, s.description, s.key, s.main_genre, s.likes, s.dislikes, s.views, s.downloads, s.image FROM sheets as s JOIN clients as c ON (c.id = s.clients_id) WHERE s.id = :sheetId',[$sheet['id']]);
     }
 
     /**
