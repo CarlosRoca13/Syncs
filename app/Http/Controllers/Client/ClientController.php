@@ -49,9 +49,11 @@ class ClientController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show($username)
     {
-        return $this->showOne($client);
+        return DB::select('SELECT * FROM clients WHERE username = :username',[
+            'username' => $username
+        ]);
     }
 
     /**
