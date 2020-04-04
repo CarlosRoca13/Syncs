@@ -18,3 +18,4 @@ Route::get('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstr
 Route::get('/sheetinstrument/pdf/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@showpdf')->name('sheetinstrument.showpdf');
 Route::put('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@update')->name('sheetinstrument.update');
 Route::get('/clients/{username}','Client\ClientController@show')->name('client.showpdf');
+Route::get('/sheetinstrument/download/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@downloadpdf')->name('sheetinstrument.downloadpdf');
