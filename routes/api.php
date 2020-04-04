@@ -17,14 +17,11 @@ Route::delete('/sheetinstrument/{playlistID}/{sheetID}','SheetInstrument\SheetIn
 Route::get('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@show')->name('sheetinstrument.show');
 Route::get('/sheetinstrument/pdf/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@showpdf')->name('sheetinstrument.showpdf');
 Route::put('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@update')->name('sheetinstrument.update');
-<<<<<<< HEAD
 Route::get('/clients/{username}','Client\ClientController@show')->name('client.show');
 Route::get('/clients/avatar/{username}','Client\ClientController@showimage')->name('client.showimage');
 Route::get('/playlist/{id}','Playlist\PlaylistController@show')->name('playlist.show');
 Route::get('/playlist/image/{id}','Playlist\PlaylistController@showimage')->name('playlist.showimage');
 Route::get('/sheets/{id}','Sheet\SheetController@show')->name('sheet.show');
 Route::get('/sheets/image/{id}','Sheet\SheetController@showimage')->name('sheet.showimage');
-=======
 Route::get('/clients/{username}','Client\ClientController@show')->name('client.showpdf');
 Route::get('/sheetinstrument/download/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@downloadpdf')->name('sheetinstrument.downloadpdf');
->>>>>>> 93bb1e5fcdcd72a70588da832eef4c99a6249d97
