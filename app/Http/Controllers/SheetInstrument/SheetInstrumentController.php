@@ -51,7 +51,7 @@ class SheetInstrumentController extends ApiController
             'effects' => $request['effects'],
             'pdf' => $pdf,
         ]);
-        
+
     }
 
     /**
@@ -81,6 +81,19 @@ class SheetInstrumentController extends ApiController
             'instrument' => $instrument,
         ]);
         return Storage::response($secuence[0]->pdf);
+    }
+
+    public function downloadpdf($sheetid, $instrument){
+        $secuence = DB::select('SELECT pdf FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
+            'sheetid' => $sheetid,
+            'instrument' => $instrument,
+        ]);
+        $path = base_path() . '\storage\app\assets\\' . $secuence[0]->pdf;
+        $headers = [
+            'Content-Type' => 'application/pdf',
+        ];
+        $name = explode('/',  $secuence[0]->pdf);
+        return response()->download($path, $name[1], $headers);
     }
 
     /**
@@ -120,7 +133,7 @@ class SheetInstrumentController extends ApiController
      * @return \Illuminate\Http\Response
      */
     public function destroy($sheetid, $instrument) // TO-DO: Hay que corregirlo
-    {   
+    {
         return DB::delete('DELETE FROM sheet_instruments WHERE sheets_id = :sheet AND instrument = :instrument',[
             'sheet' => $sheetid,
             'instrument' => $instrument,
