@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Client;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends ApiController
 {
@@ -39,21 +40,44 @@ class ClientController extends ApiController
      */
     public function store(Request $request)
     {
-        $client = Client::create($request->all());
-        return $this->showOne($client, 201);
+        $avatar = $request->avatar->store('images', 'local');
+        DB::table('clients')->insert([
+            'name' => $request['name'],
+            'lastname' => $request['lastname'],
+            'email' => $request['email'],
+            'username' => $request['username'],
+            'password' => $request['password'],
+            'verified' => $request['verified'],
+            'avatar' => $avatar,
+            'birthday' => $request['birthday'],
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $username
      * @return \Illuminate\Http\Response
      */
     public function show($username)
     {
-        return DB::select('SELECT * FROM clients WHERE username = :username',[
+        return DB::select('SELECT name, lastname, email, username, password, verified, birthday, FROM clients WHERE username = :username',[
             'username' => $username
         ]);
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  string  $username
+     * @return \Illuminate\Http\Response
+     */
+    public function showimage($username)
+    {
+        $secuence = DB::select('SELECT avatar FROM clients WHERE username = :username', [
+            'username' => $username
+        ]);
+        return Storage::response($secuence[0]->avatar);
     }
 
     /**

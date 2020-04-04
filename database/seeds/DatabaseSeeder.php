@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('playlists')->insert([
-            'clientId' => 1,
+            'clients_id' => 1,
             'name' => Str::random(10),
             'description' => Str::random(10),
         ]);

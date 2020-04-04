@@ -15,14 +15,14 @@ class CreatePlaylistsTable extends Migration
     {
         Schema::create('playlists', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('clientId');
+            $table->unsignedBigInteger('clients_id');
             $table->string('name');
             $table->string('image')->nullable();
             $table->string('description');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('clientId')->references('id')->on('clients');
+            $table->foreign('clients_id')->references('id')->on('clients');
         });
     }
 

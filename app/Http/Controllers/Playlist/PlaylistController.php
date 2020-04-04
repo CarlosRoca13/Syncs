@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Playlist;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PlaylistController extends ApiController
 {
@@ -39,19 +40,40 @@ class PlaylistController extends ApiController
      */
     public function store(Request $request)
     {
-        $playlist = Playlist::create($request->all());
-        return $this->showOne($playlist, 201);
+        $image = $request->image->store('images', 'local');
+        DB::table('playlists')->insert([
+            'clients_id' => $request['clients_id'],
+            'name' => $request['name'],
+            'image' => $image,
+            'description' => $request['description'],
+        ]);
     }
 
-    /**
+   /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Playlist $playlist)
+    public function show($id)
     {
-        return $this->showOne($playlist);
+        return DB::select('SELECT clients_id, name, description FROM playlists WHERE id = :id',[
+            'id' => $id
+        ]);
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showimage($id)
+    {
+        $secuence = DB::select('SELECT image FROM playlists WHERE id = :id', [
+            'id' => $id
+        ]);
+        return Storage::response($secuence[0]->image);
     }
 
     /**
@@ -75,7 +97,7 @@ class PlaylistController extends ApiController
     public function update(Request $request, Playlist $playlist)
     {
         $playlist->fill($request->only([
-            'clientId',
+            'clients_id',
             'name',
             'image',
             'description',

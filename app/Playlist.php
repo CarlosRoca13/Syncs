@@ -12,7 +12,7 @@ class Playlist extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'clientId',
+        'clients_id',
         'name',
         'image',
         'description',

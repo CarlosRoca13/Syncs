@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Sheet;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class SheetController extends ApiController
 {
@@ -39,8 +40,19 @@ class SheetController extends ApiController
      */
     public function store(Request $request)
     {
-        $sheet = Sheet::create($request->all());
-        return $this->showOne($sheet, 201);
+        $image = $request->image->store('images', 'local');
+        DB::table('sheets')->insert([
+            'name' => $request['name'],
+            'clients_id' => $request['clients_id'],
+            'description' => $request['description'],
+            'key' => $request['key'],
+            'main_genre' => $request['main_genre'],
+            'likes' => $request['likes'],
+            'dislikes' => $request['dislikes'],
+            'views' => $request['views'],
+            'downloads' => $request['downloads'],
+            'image' => $image,
+        ]);
     }
 
     /**
@@ -49,9 +61,25 @@ class SheetController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sheet $sheet)
+    public function show($id)
     {
-        return DB::select('SELECT s.name, c.username, s.description, s.key, s.main_genre, s.likes, s.dislikes, s.views, s.downloads, s.image FROM sheets as s JOIN clients as c ON (c.id = s.clients_id) WHERE s.id = :sheetId',[$sheet['id']]);
+        return DB::select('SELECT * FROM sheets WHERE id = :id',[
+            'id' => $id
+        ]);
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showimage($id)
+    {
+        $secuence = DB::select('SELECT image FROM sheets WHERE id = :id', [
+            'id' => $id
+        ]);
+        return Storage::response($secuence[0]->image);
     }
 
     /**
