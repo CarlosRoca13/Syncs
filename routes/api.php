@@ -10,6 +10,8 @@ Route::resource('playlist', 'Playlist\PlaylistController', ['except'=>['create',
 Route::resource('playlistitem', 'PlaylistItem\PlaylistItemController', ['only'=>['store', 'index']]);
 Route::resource('comments', 'Comment\CommentController', ['except'=>['create', 'edit', 'update']]);
 Route::resource('search', 'Search\SearchController', ['only'=>['index']]);
+Route::resource('clientplaylist', 'Search\GetArtistSong', ['only'=>['index']]);
+Route::resource('clientsong', 'Search\GetArtistPlaylist', ['only'=>['index']]);
 
 Route::delete('/playlistitem/{playlistID}/{sheetID}','PlaylistItem\PlaylistItemController@destroy')->name('playlistitem.destroy');
 Route::get('/playlistitem/{playlistID}/{sheetID}','PlaylistItem\PlaylistItemController@show')->name('playlistitem.show');
