@@ -23,5 +23,4 @@ Route::get('/playlist/{id}','Playlist\PlaylistController@show')->name('playlist.
 Route::get('/playlist/image/{id}','Playlist\PlaylistController@showimage')->name('playlist.showimage');
 Route::get('/sheets/{id}','Sheet\SheetController@show')->name('sheet.show');
 Route::get('/sheets/image/{id}','Sheet\SheetController@showimage')->name('sheet.showimage');
-Route::get('/clients/{username}','Client\ClientController@show')->name('client.showpdf');
 Route::get('/sheetinstrument/download/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@downloadpdf')->name('sheetinstrument.downloadpdf');
