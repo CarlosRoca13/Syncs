@@ -135,4 +135,34 @@ class SheetController extends ApiController
         DB::delete('DELETE FROM sheets WHERE id=?',[$sheet['id']]);
         return $this->showOne($sheet);
     }
+
+    public function upview($id)
+    {
+        return DB::update('UPDATE sheets SET views = views + 1 WHERE id = :id',['id' => $id]);        
+    }
+
+    public function uplike($id)
+    {
+        return DB::update('UPDATE sheets SET likes = likes + 1 WHERE id = :id',['id' => $id]);
+    }
+
+    public function updislike($id)
+    {
+        return DB::update('UPDATE sheets SET dislikes = dislikes + 1 WHERE id = :id',['id' => $id]);
+    }
+
+    public function updownload($id)
+    {
+        return DB::update('UPDATE sheets SET downloads = downloads + 1 WHERE id = :id',['id' => $id]);
+    }
+
+    public function downlike($id)
+    {
+        return DB::update('UPDATE sheets SET likes = likes - 1 WHERE id = :id',['id' => $id]);
+    }
+
+    public function downdislike($id)
+    {
+        return DB::update('UPDATE sheets SET dislikes = dislikes - 1 WHERE id = :id',['id' => $id]);
+    }
 }

@@ -89,4 +89,24 @@ class CommentController extends ApiController
         DB::delete('DELETE FROM comments WHERE id=?',[$comment['id']]);
         return $this->showOne($comment);
     }
+
+    public function uplike($id)
+    {
+        return DB::update('UPDATE comments SET likes = likes + 1 WHERE id = :id',['id' => $id]);
+    }
+
+    public function updislike($id)
+    {
+        return DB::update('UPDATE comments SET dislikes = dislikes + 1 WHERE id = :id',['id' => $id]);
+    }
+
+    public function downlike($id)
+    {
+        return DB::update('UPDATE comments SET likes = likes - 1 WHERE id = :id',['id' => $id]);
+    }
+
+    public function downdislike($id)
+    {
+        return DB::update('UPDATE comments SET dislikes = dislikes - 1 WHERE id = :id',['id' => $id]);
+    }
 }

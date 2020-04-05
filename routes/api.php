@@ -26,3 +26,14 @@ Route::get('/playlist/image/{id}','Playlist\PlaylistController@showimage')->name
 Route::get('/sheets/{id}','Sheet\SheetController@show')->name('sheet.show');
 Route::get('/sheets/image/{id}','Sheet\SheetController@showimage')->name('sheet.showimage');
 Route::get('/sheetinstrument/download/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@downloadpdf')->name('sheetinstrument.downloadpdf');
+
+Route::put('/sheets/upview/{id}','Sheet\SheetController@upview')->name('sheet.upview');
+Route::put('/sheets/uplike/{id}','Sheet\SheetController@uplike')->name('sheet.uplike');
+Route::put('/sheets/updislike/{id}','Sheet\SheetController@updislike')->name('sheet.updislike');
+Route::put('/sheets/updownload/{id}','Sheet\SheetController@updownload')->name('sheet.updownload');
+Route::put('/sheets/downlike/{id}','Sheet\SheetController@downlike')->name('sheet.downlike');
+Route::put('/sheets/downdislike/{id}','Sheet\SheetController@downdislike')->name('sheet.downdislike');
+Route::put('/comments/uplike/{id}','Comment\CommentController@uplike')->name('comment.uplike');
+Route::put('/comments/updislike/{id}','Comment\CommentController@updislike')->name('comment.updislike');
+Route::put('/comments/downlike/{id}','Comment\CommentController@downlike')->name('comment.downlike');
+Route::put('/comments/downdislike/{id}','Comment\CommentController@downdislike')->name('comment.downdislike');
