@@ -26,6 +26,7 @@ Route::get('/sheets/image/{id}','Sheet\SheetController@showimage')->name('sheet.
 Route::get('/sheetinstrument/download/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@downloadpdf')->name('sheetinstrument.downloadpdf');
 Route::get('/clientplaylist/{id}','Search\SearchController@getplaylistartist')->name('search.getplaylistartist');
 Route::get('/clientsong/{id}','Search\SearchController@getsongartist')->name('search.getsongartist');
+Route::get('/sheetinstrument/{sheetId}','SheetInstrument\SheetInstrumentController@showbysheet')->name('search.showbysheet');
 
 Route::put('/sheets/upview/{id}','Sheet\SheetController@upview')->name('sheet.upview');
 Route::put('/sheets/uplike/{id}','Sheet\SheetController@uplike')->name('sheet.uplike');

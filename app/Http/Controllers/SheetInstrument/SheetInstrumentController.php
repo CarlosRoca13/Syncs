@@ -46,7 +46,7 @@ class SheetInstrumentController extends ApiController
     {
         $pdf = $request->pdf->store('pdf', 'local');
         DB::table('sheet_instruments')->insert([
-            'sheets_id' => $request['sheetId'],
+            'sheets_id' => $request['sheets_id'],
             'instrument' => $request['instrument'],
             'effects' => $request['effects'],
             'pdf' => $pdf,
@@ -65,6 +65,13 @@ class SheetInstrumentController extends ApiController
         return DB::select('SELECT sheets_id, instrument, effects FROM sheet_instruments WHERE sheets_id = :sheetid AND instrument = :instrument', [
             'sheetid' => $sheetid,
             'instrument' => $instrument,
+        ]);
+    }
+
+    public function showbysheet($sheetid)
+    {
+        return DB::select('SELECT instrument FROM sheet_instruments WHERE sheets_id = :sheetid', [
+            'sheetid' => $sheetid
         ]);
     }
 
