@@ -40,7 +40,11 @@ class ClientController extends ApiController
      */
     public function store(Request $request)
     {
-        $avatar = $request->avatar->store('images', 'local');
+        $avatar = null;
+        if($request['avatar'] != null) {
+            $avatar = $request->avatar->store('images', 'local');
+        }
+        
         DB::table('clients')->insert([
             'name' => $request['name'],
             'lastname' => $request['lastname'],
