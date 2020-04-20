@@ -38,3 +38,7 @@ Route::put('/comments/uplike/{id}','Comment\CommentController@uplike')->name('co
 Route::put('/comments/updislike/{id}','Comment\CommentController@updislike')->name('comment.updislike');
 Route::put('/comments/downlike/{id}','Comment\CommentController@downlike')->name('comment.downlike');
 Route::put('/comments/downdislike/{id}','Comment\CommentController@downdislike')->name('comment.downdislike');
+
+Route::get('follows/{user_id}', 'Follow\FollowController@index')->name('follow.index');
+Route::post('follows', 'Follow\FollowController@store')->name('follow.store');
+Route::delete('follows/{user_id}/{follower_id}', 'Follow\FollowController@destroy')->name('follow.destroy');
