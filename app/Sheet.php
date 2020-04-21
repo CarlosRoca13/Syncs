@@ -32,6 +32,14 @@ class Sheet extends Model
         return $this->hasMany(Comment::class, 'sheetId');
     }
 
+    public function liked_songs() {
+        return $this->hasMany(LikedSong::class, 'sheetId');
+    }
+
+    public function disliked_songs() {
+        return $this->hasMany(DislikedSong::class, 'sheetId');
+    }
+
     public function sheetInstruments() {
         return $this->hasMany(SheetInstrument::class, 'sheetId');
     }

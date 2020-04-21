@@ -29,15 +29,13 @@ Route::get('/clientsong/{id}','Search\SearchController@getsongartist')->name('se
 Route::get('/sheetinstrument/{sheetId}','SheetInstrument\SheetInstrumentController@showbysheet')->name('search.showbysheet');
 
 Route::put('/sheets/upview/{id}','Sheet\SheetController@upview')->name('sheet.upview');
-Route::put('/sheets/uplike/{id}','Sheet\SheetController@uplike')->name('sheet.uplike');
-Route::put('/sheets/updislike/{id}','Sheet\SheetController@updislike')->name('sheet.updislike');
+Route::put('/sheets/uplike/{sheets_id}/{clients_id}','LikedSong\LikedSongController@uplike')->name('likedsong.uplike');
+Route::put('/sheets/updislike/{sheets_id}/{clients_id}','DislikedSong\DislikedSongController@updislike')->name('disikedsong.updislike');
 Route::put('/sheets/updownload/{id}','Sheet\SheetController@updownload')->name('sheet.updownload');
-Route::put('/sheets/downlike/{id}','Sheet\SheetController@downlike')->name('sheet.downlike');
-Route::put('/sheets/downdislike/{id}','Sheet\SheetController@downdislike')->name('sheet.downdislike');
-Route::put('/comments/uplike/{id}','Comment\CommentController@uplike')->name('comment.uplike');
-Route::put('/comments/updislike/{id}','Comment\CommentController@updislike')->name('comment.updislike');
-Route::put('/comments/downlike/{id}','Comment\CommentController@downlike')->name('comment.downlike');
-Route::put('/comments/downdislike/{id}','Comment\CommentController@downdislike')->name('comment.downdislike');
+Route::put('/sheets/downlike/{sheets_id}/{clients_id}','LikedSong\LikedSongController@downlike')->name('likedsong.downlike');
+Route::put('/sheets/downdislike/{sheets_id}/{clients_id}','DislikedSong\DislikedSongController@downdislike')->name('dislikedsong.downdislike');
+Route::get('/sheets/getuserdislike/{sheets_id}/{clients_id}','DislikedSong\DislikedSongController@getuser')->name('dislikedsong.getuser');
+Route::get('/sheets/getuserlike/{sheets_id}/{clients_id}','LikedSong\LikedSongController@getuser')->name('likedsong.getuser');
 
 Route::get('follows/{user_id}', 'Follow\FollowController@index')->name('follow.index');
 Route::post('follows', 'Follow\FollowController@store')->name('follow.store');

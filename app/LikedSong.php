@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model
+class LikedSong extends Model
 {
     use SoftDeletes;
 
@@ -13,10 +13,7 @@ class Comment extends Model
 
     protected $fillable = [
         'clients_id',
-        'sheets_id',
-        'dateTime',
-        'description',
-        'response',
+        'sheets_id'
     ];
     
     public function client() {
@@ -25,13 +22,5 @@ class Comment extends Model
 
     public function sheet() {
         return $this->belongsTo(Sheet::class);
-    }
-
-    public function comment() {
-        return $this->belongsTo(Comment::class);
-    }
-
-    public function comments() {
-        return $this->hasMany(Comment::class, 'response');
     }
 }

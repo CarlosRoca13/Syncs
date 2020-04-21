@@ -63,7 +63,7 @@ class SheetController extends ApiController
      */
     public function show($id)
     {
-        return DB::select('SELECT s.name, c.username, s.description, s.key, s.main_genre, s.likes, s.dislikes, s.views, s.downloads, s.image FROM sheets as s JOIN clients as c ON(s.clients_id = c.id) WHERE s.id = :id',[
+        return DB::select('SELECT s.name, c.username, s.description, s.key, s.main_genre, (SELECT COUNT(*) FROM liked_songs WHERE sheets_id = :id) as likes, (SELECT COUNT(*) FROM disliked_songs WHERE sheets_id = :id) as dislikes, s.views, s.downloads, s.image FROM sheets as s JOIN clients as c ON(s.clients_id = c.id) WHERE s.id = :id',[
             'id' => $id
         ]);
     }
@@ -141,28 +141,8 @@ class SheetController extends ApiController
         return DB::update('UPDATE sheets SET views = views + 1 WHERE id = :id',['id' => $id]);        
     }
 
-    public function uplike($id)
-    {
-        return DB::update('UPDATE sheets SET likes = likes + 1 WHERE id = :id',['id' => $id]);
-    }
-
-    public function updislike($id)
-    {
-        return DB::update('UPDATE sheets SET dislikes = dislikes + 1 WHERE id = :id',['id' => $id]);
-    }
-
     public function updownload($id)
     {
         return DB::update('UPDATE sheets SET downloads = downloads + 1 WHERE id = :id',['id' => $id]);
-    }
-
-    public function downlike($id)
-    {
-        return DB::update('UPDATE sheets SET likes = likes - 1 WHERE id = :id',['id' => $id]);
-    }
-
-    public function downdislike($id)
-    {
-        return DB::update('UPDATE sheets SET dislikes = dislikes - 1 WHERE id = :id',['id' => $id]);
     }
 }

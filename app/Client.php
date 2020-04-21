@@ -30,6 +30,14 @@ class Client extends Model
         return $this->hasMany(Comment::class, 'clientId');
     }
 
+    public function liked_songs() {
+        return $this->hasMany(LikedSong::class, 'clientId');
+    }
+
+    public function disliked_songs() {
+        return $this->hasMany(DislikedSong::class, 'clientId');
+    }
+
     public function playlists() {
         return $this->hasMany(Playlist::class, 'clientId');
     }

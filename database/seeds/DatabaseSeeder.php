@@ -52,12 +52,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('comments')->insert([
-            'clientId' => 1,
-            'sheetId' => 1,
+            'clients_id' => 1,
+            'sheets_id' => 1,
             'dateTime' => '2000-01-02',
             'description' => Str::random(10),
-            'likes' => 0,
-            'dislikes' => 0,
         ]);
     }
 }

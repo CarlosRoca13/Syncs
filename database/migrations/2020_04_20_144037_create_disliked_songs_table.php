@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommentsTable extends Migration
+class CreateDislikedSongsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,14 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+        Schema::create('disliked_songs', function (Blueprint $table) {
             $table->unsignedBigInteger('clients_id');
             $table->unsignedBigInteger('sheets_id');
-            $table->date('dateTime');
-            $table->string('description');
-            $table->unsignedBigInteger('response')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('clients_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('sheets_id')->references('id')->on('sheets')->onDelete('cascade');
-            $table->foreign('response')->references('id')->on('comments')->onDelete('cascade');
         });
     }
 
@@ -36,6 +31,6 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('disliked_songs');
     }
 }
