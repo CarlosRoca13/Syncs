@@ -9,7 +9,7 @@ Route::resource('sheetinstrument', 'SheetInstrument\SheetInstrumentController', 
 Route::resource('playlist', 'Playlist\PlaylistController', ['except'=>['create', 'edit', 'show']]);
 Route::resource('playlistitem', 'PlaylistItem\PlaylistItemController', ['only'=>['store', 'index']]);
 Route::resource('comments', 'Comment\CommentController', ['except'=>['create', 'edit', 'update']]);
-Route::resource('search', 'Search\SearchController', ['only'=>['index']]);
+
 
 Route::delete('/playlistitem/{playlistID}/{sheetID}','PlaylistItem\PlaylistItemController@destroy')->name('playlistitem.destroy');
 Route::get('/playlistitem/{playlistID}/{sheetID}','PlaylistItem\PlaylistItemController@show')->name('playlistitem.show');
@@ -26,6 +26,9 @@ Route::get('/sheets/image/{id}','Sheet\SheetController@showimage')->name('sheet.
 Route::get('/sheetinstrument/download/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@downloadpdf')->name('sheetinstrument.downloadpdf');
 Route::get('/clientplaylist/{id}','Search\SearchController@getplaylistartist')->name('search.getplaylistartist');
 Route::get('/clientsong/{id}','Search\SearchController@getsongartist')->name('search.getsongartist');
+Route::get('/search/artist/{name}','Search\SearchController@searchartist')->name('search.searchartist');
+Route::get('/search/song/{name}','Search\SearchController@searchsong')->name('search.searchsong');
+Route::get('/search/playlist/{name}','Search\SearchController@searchplaylist')->name('search.searchplaylist');
 Route::get('/sheetinstrument/{sheetId}','SheetInstrument\SheetInstrumentController@showbysheet')->name('search.showbysheet');
 
 Route::put('/sheets/upview/{id}','Sheet\SheetController@upview')->name('sheet.upview');

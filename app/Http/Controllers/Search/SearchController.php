@@ -14,11 +14,19 @@ class SearchController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function searchartist($name)
     {
-        $name = $request['name'];
-        return DB::select('SELECT COALESCE(s.name, NULL) as sheet, COALESCE(s.id, NULL) as sheetid, COALESCE(c.name, NULL) as client, COALESCE(c.id, NULL) as clientId, COALESCE(p.name, NULL) as playlist, COALESCE(p.id, NULL) as playlistId FROM sheets as s FULL JOIN clients as c USING(name) FULL JOIN playlists as p USING(name)WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);
+        return DB::select('SELECT COALESCE(c.name, NULL) as client, COALESCE(c.id, NULL) as clientId FROM clients as c WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);    
+    }
         
+    public function searchsong($name)
+    {
+        return DB::select('SELECT COALESCE(s.name, NULL) as sheet, COALESCE(s.id, NULL) as sheetid FROM sheets as s WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);    
+    }
+        
+    public function searchplaylist($name)
+    {
+        return DB::select('SELECT COALESCE(p.name, NULL) as playlist, COALESCE(p.id, NULL) as playlistId FROM playlists as p WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);    
     }
 
     public function getsongartist($id)
