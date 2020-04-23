@@ -27,8 +27,6 @@ class DatabaseSeeder extends Seeder
             'description' => Str::random(10),
             'key' => Str::random(10),
             'main_genre' => Str::random(10),
-            'likes' => 0,
-            'dislikes' => 0,
             'views' => 0,
             'downloads' => 0,
         ]);

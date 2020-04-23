@@ -20,8 +20,6 @@ class CreateSheetsTable extends Migration
             $table->string('description');
             $table->string('key');
             $table->string('main_genre');
-            $table->integer('likes')->unsigned();
-            $table->integer('dislikes')->unsigned();
             $table->integer('views')->unsigned();
             $table->integer('downloads')->unsigned();
             $table->string('image')->nullable();

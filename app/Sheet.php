@@ -17,8 +17,6 @@ class Sheet extends Model
         'description',
         'key',
         'main_genre',
-        'likes',
-        'dislikes',
         'views',
         'downloads',
         'image',

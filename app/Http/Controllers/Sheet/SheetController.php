@@ -40,19 +40,21 @@ class SheetController extends ApiController
      */
     public function store(Request $request)
     {
-        $image = $request->image->store('images', 'local');
+        $image = null;
+        if($request['image'] != null) {
+            $image = $request->image->store('images', 'local');
+        }
         DB::table('sheets')->insert([
             'name' => $request['name'],
             'clients_id' => $request['clients_id'],
             'description' => $request['description'],
             'key' => $request['key'],
             'main_genre' => $request['main_genre'],
-            'likes' => $request['likes'],
-            'dislikes' => $request['dislikes'],
             'views' => $request['views'],
             'downloads' => $request['downloads'],
             'image' => $image,
         ]);
+        return response()->json(DB::getPdo()->lastInsertId());
     }
 
     /**
