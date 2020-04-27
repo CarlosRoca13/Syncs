@@ -26,7 +26,7 @@ class LikedSongController extends Controller
 
     public function getuser($sheetid, $clientid)
     {
-        $users = DB::table('disliked_songs')->where('sheets_id', $sheetid)->pluck('clients_id')->toArray();
+        $users = DB::table('liked_songs')->where('sheets_id', $sheetid)->pluck('clients_id')->toArray();
         if(in_array($clientid, $users)){
             return response()->json(true);
         }

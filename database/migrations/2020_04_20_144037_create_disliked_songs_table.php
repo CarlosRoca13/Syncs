@@ -19,6 +19,7 @@ class CreateDislikedSongsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->primary(['clients_id', 'sheets_id']);
             $table->foreign('clients_id')->references('id')->on('clients')->onDelete('cascade');
             $table->foreign('sheets_id')->references('id')->on('sheets')->onDelete('cascade');
         });
