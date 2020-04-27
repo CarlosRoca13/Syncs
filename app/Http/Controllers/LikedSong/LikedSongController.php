@@ -10,6 +10,10 @@ class LikedSongController extends Controller
 {
     public function uplike($sheetid, $clientid)
     {
+        DB::delete('DELETE FROM disliked_songs WHERE sheets_id = :sheetid AND clients_id = :clientid', [
+            'sheetid' => $sheetid,
+            'clientid' => $clientid
+        ]);
         return DB::insert('INSERT INTO liked_songs VALUES(:clientid, :sheetid)',[
             'clientid' => $clientid,
             'sheetid' => $sheetid
