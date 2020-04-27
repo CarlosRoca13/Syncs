@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Follow;
 
 use App\Http\Controllers\ApiController;
+use App\Mail\NotifyFollowers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class FollowController extends ApiController
 {
@@ -13,6 +15,15 @@ class FollowController extends ApiController
     {
         $followers = DB::table('follows')->where('user_id', $user_id)->pluck('follower_id')->toArray();
         return response()->json($followers);
+    }
+
+    public function email($user_id){
+        $followers = DB::table('follows')->where('user_id', $user_id)->pluck('follower_id')->toArray();
+        $emails = DB::table('clients')->whereIn('id', $followers)->pluck('email');
+        $artista = DB::table('clients')->where('id', $user_id) ->pluck('username');
+        foreach($emails as $email){
+            Mail::to($email)->send(new NotifyFollowers($artista[0]));
+        }
     }
 
 
