@@ -76,10 +76,10 @@ class ClientController extends ApiController
      * @param  string  $username
      * @return \Illuminate\Http\Response
      */
-    public function showimage($username)
+    public function showimage($id)
     {
-        $secuence = DB::select('SELECT avatar FROM clients WHERE username = :username', [
-            'username' => $username
+        $secuence = DB::select('SELECT avatar FROM clients WHERE id = :id', [
+            'id' => $id
         ]);
         return Storage::response($secuence[0]->avatar);
     }

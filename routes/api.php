@@ -18,7 +18,7 @@ Route::get('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstr
 Route::get('/sheetinstrument/pdf/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@showpdf')->name('sheetinstrument.showpdf');
 Route::put('/sheetinstrument/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@update')->name('sheetinstrument.update');
 Route::get('/clients/{username}','Client\ClientController@show')->name('client.show');
-Route::get('/clients/avatar/{username}','Client\ClientController@showimage')->name('client.showimage');
+Route::get('/clients/avatar/{id}','Client\ClientController@showimage')->name('client.showimage');
 Route::get('/playlist/{id}','Playlist\PlaylistController@show')->name('playlist.show');
 Route::get('/playlist/image/{id}','Playlist\PlaylistController@showimage')->name('playlist.showimage');
 Route::get('/sheets/{id}','Sheet\SheetController@show')->name('sheet.show');
