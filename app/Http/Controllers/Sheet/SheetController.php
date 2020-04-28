@@ -104,23 +104,25 @@ class SheetController extends ApiController
      */
     public function update(Request $request, Sheet $sheet)
     {
-        dd($request);
-        $avatar = null;
-        if($request['avatar'] != null) {
-            $avatar = $request->avatar->store('images', 'local');
-        }
+        $sheet->fill($request->only([
+            'name',
+            'clientId',
+            'description',
+            'key',
+            'mainGenre',
+            'likes',
+            'dislikes',
+            'views',
+            'downolads',
+            'image',
+        ]));
 
-        return DB::update('UPDATE clients SET name = :name, lastname = :lastname, email = :email, username = :username, password = :password, verified = :verified, avatar = :avatar, birthday = :birthday WHERE id = :id', [
-            'name' => $request['name'],
-            'lastname' => $request['lastname'],
-            'email' => $request['email'],
-            'username' => $request['username'],
-            'password' => $request['password'],
-            'verified' => $request['verified'],
-            'avatar' => $avatar,
-            'birthday' => $request['birthday'],
-            'id' => $client->id
-        ]);
+        if($sheet->isClean()){
+            return $this->errorResponse('Debe especificar al menos un valor diferente para actuaizar', 422);
+        }
+        $sheet->save();
+
+        return $this->showOne($sheet);
     }
 
     /**
