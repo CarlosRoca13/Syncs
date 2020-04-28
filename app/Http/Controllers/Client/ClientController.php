@@ -65,7 +65,7 @@ class ClientController extends ApiController
      */
     public function show($username)
     {
-        return DB::select('SELECT name, lastname, email, username, password, verified, birthday FROM clients WHERE username = :username',[
+        return DB::select('SELECT name, lastname, email, username, password, verified, birthday, avatar FROM clients WHERE username = :username',[
             'username' => $username
         ]);
     }
