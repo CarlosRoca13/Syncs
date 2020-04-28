@@ -104,7 +104,6 @@ class ClientController extends ApiController
      */
     public function update(Request $request, Client $client)
     {
-        dd($request);
         $avatar = null;
         if($request['avatar'] != null) {
             $avatar = $request->avatar->store('images', 'local');
