@@ -102,37 +102,20 @@ class ClientController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
-    {
-        $avatar = null;
-        if($request['avatar'] != null) {
-            $avatar = $request->avatar->store('images', 'local');
+    public function update(Request $request, $id)
+    {  
+        $instance = DB::table('clients')->where('id', '=', $id)->get();
+        $resultArray = json_decode(json_encode($instance), true);
+        $updateData['name'] = ($request['name'] != null) ? $request['name'] : $resultArray[0]['name'];
+        $updateData['lastname'] = ($request['lastname'] != null) ? $request['lastname'] : $resultArray[0]['lastname'];
+        $updateData['email'] = ($request['email'] != null) ? $request['email'] : $resultArray[0]['email'];
+        $updateData['username'] = ($request['username'] != null) ? $request['username'] : $resultArray[0]['username'];
+        $updateData['password'] = ($request['password'] != null) ? $request['password'] : $resultArray[0]['password'];
+        $updateData['verified'] = ($request['verified'] != null) ? $request['verified'] : $resultArray[0]['verified'];
+        $updateData['avatar'] = ($request['avatar'] != null) ? $request->avatar->store('images', 'local') : $resultArray[0]['avatar'];
+        $updateData['birthday'] = ($request['birthday'] != null) ? $request['birthday'] : $resultArray[0]['birthday'];
 
-            return DB::update('UPDATE clients SET name = :name, lastname = :lastname, email = :email, username = :username, password = :password, verified = :verified, avatar = :avatar, birthday = :birthday WHERE id = :id', [
-                'name' => $request['name'],
-                'lastname' => $request['lastname'],
-                'email' => $request['email'],
-                'username' => $request['username'],
-                'password' => $request['password'],
-                'verified' => $request['verified'],
-                'avatar' => $avatar,
-                'birthday' => $request['birthday'],
-                'id' => $client->id
-            ]);
-        }
-
-        return DB::update('UPDATE clients SET name = :name, lastname = :lastname, email = :email, username = :username, password = :password, verified = :verified, birthday = :birthday WHERE id = :id', [
-            'name' => $request['name'],
-            'lastname' => $request['lastname'],
-            'email' => $request['email'],
-            'username' => $request['username'],
-            'password' => $request['password'],
-            'verified' => $request['verified'],
-            'birthday' => $request['birthday'],
-            'id' => $client->id
-        ]);
-
-        
+        return DB::table('clients')->where('id','=', $id)->update($updateData);
     }
 
     /**

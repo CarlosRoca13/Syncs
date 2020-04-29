@@ -18,7 +18,7 @@ class CreatePlaylistsTable extends Migration
             $table->unsignedBigInteger('clients_id');
             $table->string('name');
             $table->string('image')->nullable();
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
 

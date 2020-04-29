@@ -17,7 +17,7 @@ class CreateSheetsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('clients_id');
-            $table->string('description');
+            $table->text('description');
             $table->string('key');
             $table->string('main_genre');
             $table->integer('views')->unsigned();
