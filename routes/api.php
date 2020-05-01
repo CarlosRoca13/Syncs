@@ -23,6 +23,7 @@ Route::get('/clients/avatar/{id}','Client\ClientController@showimage')->name('cl
 Route::get('/playlist/{id}','Playlist\PlaylistController@show')->name('playlist.show');
 Route::get('/playlist/image/{id}','Playlist\PlaylistController@showimage')->name('playlist.showimage');
 Route::get('/sheets/{id}','Sheet\SheetController@show')->name('sheet.show');
+Route::get('/sheets/client/{clientid}','Sheet\SheetController@showbyclientid')->name('sheet.showbyclientid');
 Route::get('/sheets/image/{id}','Sheet\SheetController@showimage')->name('sheet.showimage');
 Route::get('/sheetinstrument/download/{sheetId}/{instrument}','SheetInstrument\SheetInstrumentController@downloadpdf')->name('sheetinstrument.downloadpdf');
 Route::get('/clientplaylist/{id}','Search\SearchController@getplaylistartist')->name('search.getplaylistartist');

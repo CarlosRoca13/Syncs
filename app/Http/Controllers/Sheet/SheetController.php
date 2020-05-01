@@ -70,6 +70,13 @@ class SheetController extends ApiController
         ]);
     }
 
+    public function showbyclientid($clientid)
+    {
+        return DB::select('SELECT * from sheets WHERE clients_id = :clientid',[
+            'clientid' => $clientid
+        ]);
+    }
+
      /**
      * Display the specified resource.
      *
