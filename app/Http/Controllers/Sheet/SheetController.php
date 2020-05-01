@@ -18,7 +18,7 @@ class SheetController extends ApiController
      */
     public function index()
     {
-        return DB::select('SELECT s.name, c.username, s.description, s.key, s.main_genre, (SELECT COUNT(*) FROM liked_songs WHERE sheets_id = s.id) as likes, (SELECT COUNT(*) FROM disliked_songs WHERE sheets_id = s.id) as dislikes, s.views, s.downloads, s.image FROM sheets as s JOIN clients as c ON(s.clients_id = c.id)');
+        return DB::select('SELECT s.id, s.name, c.username, s.description, s.key, s.main_genre, (SELECT COUNT(*) FROM liked_songs WHERE sheets_id = s.id) as likes, (SELECT COUNT(*) FROM disliked_songs WHERE sheets_id = s.id) as dislikes, s.views, s.downloads, s.image FROM sheets as s JOIN clients as c ON(s.clients_id = c.id)');
     }
 
     /**
