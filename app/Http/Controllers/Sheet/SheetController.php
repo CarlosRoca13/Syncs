@@ -71,7 +71,7 @@ class SheetController extends ApiController
 
     public function showbyclientid($clientid)
     {
-        return DB::select('SELECT * from sheets WHERE clients_id = :clientid',[
+        return DB::select('SELECT s.id, s.name, c.username, s.description, s.key, s.main_genre, (SELECT COUNT(*) FROM liked_songs WHERE sheets_id = s.id) as likes, (SELECT COUNT(*) FROM disliked_songs WHERE sheets_id = s.id) as dislikes, s.views, s.downloads, s.image FROM sheets as s JOIN clients as c ON(s.clients_id = c.id) WHERE s.clients_id = :clientid',[
             'clientid' => $clientid
         ]);
     }
