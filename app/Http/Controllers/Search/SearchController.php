@@ -16,7 +16,7 @@ class SearchController extends ApiController
      */
     public function searchartist($name)
     {
-        return DB::select('SELECT COALESCE(c.name, NULL) as client, COALESCE(c.id, NULL) as clientId FROM clients as c WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);    
+        return DB::select('SELECT COALESCE(c.username, NULL) as client, COALESCE(c.id, NULL) as clientId FROM clients as c WHERE UPPER(username) like UPPER(:name)',['name'=> '%' . $name . '%']);    
     }
         
     public function searchsong($name)
@@ -31,11 +31,11 @@ class SearchController extends ApiController
 
     public function getsongartist($id)
     {
-        return DB::select('SELECT c.name as client FROM clients as c  JOIN sheets as s ON(s.clients_id = c.id) WHERE s.id = :sheetid',['sheetid' => $id]);
+        return DB::select('SELECT c.username as client FROM clients as c  JOIN sheets as s ON(s.clients_id = c.id) WHERE s.id = :sheetid',['sheetid' => $id]);
     }
 
     public function getplaylistartist($id)
     {
-        return DB::select('SELECT c.name as client FROM clients as c JOIN playlists as p ON(p.clients_id = c.id) WHERE p.id = :playlistid',['playlistid' => $id]);
+        return DB::select('SELECT c.username as client FROM clients as c JOIN playlists as p ON(p.clients_id = c.id) WHERE p.id = :playlistid',['playlistid' => $id]);
     }
 }
