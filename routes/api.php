@@ -32,6 +32,7 @@ Route::get('/search/artist/{name}','Search\SearchController@searchartist')->name
 Route::get('/search/song/{name}','Search\SearchController@searchsong')->name('search.searchsong');
 Route::get('/search/playlist/{name}','Search\SearchController@searchplaylist')->name('search.searchplaylist');
 Route::get('/sheetinstrument/{sheetId}','SheetInstrument\SheetInstrumentController@showbysheet')->name('search.showbysheet');
+Route::get('/artists', 'Sheet\SheetController@getartists')->name('search.getartists');
 
 Route::put('/sheets/upview/{id}','Sheet\SheetController@upview')->name('sheet.upview');
 Route::put('/sheets/uplike/{sheets_id}/{clients_id}','LikedSong\LikedSongController@uplike')->name('likedsong.uplike');

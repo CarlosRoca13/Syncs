@@ -153,4 +153,9 @@ class SheetController extends ApiController
     {
         return DB::update('UPDATE sheets SET downloads = downloads + 1 WHERE id = :id',['id' => $id]);
     }
+
+    public function getartists()
+    {
+        return DB::select('SELECT DISTINCT s.clients_id, c.name FROM sheets as s JOIN clients as c ON (s.clients_id = c.id)');
+    }
 }
