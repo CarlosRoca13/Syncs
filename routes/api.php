@@ -47,3 +47,8 @@ Route::get('follows/{user_id}', 'Follow\FollowController@index')->name('follow.i
 Route::get('follows/notify/{user_id}', 'Follow\FollowController@email')->name('follow.email');
 Route::post('follows', 'Follow\FollowController@store')->name('follow.store');
 Route::delete('follows/{user_id}/{follower_id}', 'Follow\FollowController@destroy')->name('follow.destroy');
+
+Route::post('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongController@add')->name('favoritesong.add');
+Route::delete('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongController@remove')->name('favoritesong.remove');
+Route::get('favorite/{clientid}', 'FavoriteSong\FavoriteSongController@list')->name('favoritesong.list');
+Route::get('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongController@isfavorite')->name('favoritesong.isfavorite');

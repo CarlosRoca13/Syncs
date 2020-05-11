@@ -38,6 +38,11 @@ class Client extends Model
         return $this->hasMany(DislikedSong::class, 'clientId');
     }
 
+    public function favorite_songs() {
+        return $this->hasMany(FavoriteSong::class, 'clientId');
+    }
+
+
     public function playlists() {
         return $this->hasMany(Playlist::class, 'clientId');
     }

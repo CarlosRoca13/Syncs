@@ -38,6 +38,10 @@ class Sheet extends Model
         return $this->hasMany(DislikedSong::class, 'sheetId');
     }
 
+    public function favorite_songs() {
+        return $this->hasMany(FavoriteSong::class, 'sheetId');
+    }
+
     public function sheetInstruments() {
         return $this->hasMany(SheetInstrument::class, 'sheetId');
     }
