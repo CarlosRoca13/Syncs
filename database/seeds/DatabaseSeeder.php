@@ -38,17 +38,6 @@ class DatabaseSeeder extends Seeder
             'pdf' => 'pdf/prueba.pdf',
         ]);
 
-        DB::table('playlists')->insert([
-            'clients_id' => 1,
-            'name' => Str::random(10),
-            'description' => Str::random(10),
-        ]);
-
-        DB::table('playlist_items')->insert([
-            'playlists_id' => 1,
-            'sheets_id' => 1,
-        ]);
-
         DB::table('comments')->insert([
             'clients_id' => 1,
             'sheets_id' => 1,
