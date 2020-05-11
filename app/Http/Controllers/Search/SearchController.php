@@ -21,7 +21,7 @@ class SearchController extends ApiController
         
     public function searchsong($name)
     {
-        return DB::select('SELECT COALESCE(s.name, NULL) as sheet, COALESCE(s.id, NULL) as sheetid, (SELECT username FROM clients WHERE id = s.clients_id) as client FROM sheets as s WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);    
+        return DB::select('SELECT COALESCE(s.name, NULL) as sheet, COALESCE(s.id, NULL) as sheetid, (SELECT username FROM clients WHERE id = s.clients_id) as client, s.image, s.downloads, s.views, (SELECT COUNT(*) FROM liked_songs WHERE sheets_id = s.id) as likes FROM sheets as s WHERE UPPER(name) like UPPER(:name)',['name'=> '%' . $name . '%']);    
     }
 
     public function getsongartist($id)
