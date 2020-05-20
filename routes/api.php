@@ -44,6 +44,7 @@ Route::get('/sheets/getuserdislike/{sheets_id}/{clients_id}','DislikedSong\Disli
 Route::get('/sheets/getuserlike/{sheets_id}/{clients_id}','LikedSong\LikedSongController@getuser')->name('likedsong.getuser');
 
 Route::get('follows/{user_id}', 'Follow\FollowController@index')->name('follow.index');
+Route::get('follows/user/{user_id}', 'Follow\FollowController@r_follows')->name('follow.r_follows');
 Route::get('follows/notify/{user_id}', 'Follow\FollowController@email')->name('follow.email');
 Route::post('follows', 'Follow\FollowController@store')->name('follow.store');
 Route::delete('follows/{user_id}/{follower_id}', 'Follow\FollowController@destroy')->name('follow.destroy');

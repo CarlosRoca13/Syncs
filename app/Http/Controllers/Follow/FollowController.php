@@ -17,6 +17,13 @@ class FollowController extends ApiController
         return response()->json($followers);
     }
 
+
+    public function r_follows($user_id)
+    {
+        $follows = DB::table('follows')->where('follower_id', $user_id)->pluck('user_id')->toArray();
+        return response()->json($follows);
+    }
+
     public function email($user_id){
         $followers = DB::table('follows')->where('user_id', $user_id)->pluck('follower_id')->toArray();
         $emails = DB::table('clients')->whereIn('id', $followers)->pluck('email');
