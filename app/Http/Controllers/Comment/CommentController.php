@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Comment;
 use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CommentController extends ApiController
 {
@@ -17,7 +18,7 @@ class CommentController extends ApiController
      */
     public function index($id)
     {
-        $comments = DB::table('comments')->where('sheets_id', '=', $id)->orderBy('created_at', 'desc')->get();
+        $comments = DB::table('comments')->where('sheets_id', '=', $id)->orderBy('dateTime', 'desc')->get();
         return $this->showAll($comments);
     }
 
@@ -39,8 +40,15 @@ class CommentController extends ApiController
      */
     public function store(Request $request)
     {
-        $comment = Comment::create($request->all());
-        return $this->showOne($comment, 201);
+
+        return  DB::table('comments')->insert([
+            'clients_id' => $request['clients_id'],
+            'sheets_id' => $request['sheets_id'],
+            'dateTime' => Carbon::now(),
+            'response' => $request['response'],
+            'description' => $request['description']
+        ]);
+        
     }
 
     /**

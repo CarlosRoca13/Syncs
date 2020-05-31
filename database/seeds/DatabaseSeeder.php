@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class DatabaseSeeder extends Seeder
 {
@@ -41,7 +42,7 @@ class DatabaseSeeder extends Seeder
         DB::table('comments')->insert([
             'clients_id' => 1,
             'sheets_id' => 1,
-            'dateTime' => '2000-01-02',
+            'dateTime' => Carbon::now(),
             'description' => Str::random(10),
         ]);
     }

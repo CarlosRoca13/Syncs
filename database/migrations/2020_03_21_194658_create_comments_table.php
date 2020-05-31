@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('clients_id');
             $table->unsignedBigInteger('sheets_id');
-            $table->date('dateTime');
+            $table->datetime('dateTime');
             $table->text('description');
             $table->unsignedBigInteger('response')->nullable();
             $table->timestamps();

@@ -54,4 +54,4 @@ Route::delete('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongControl
 Route::get('favorite/{clientid}', 'FavoriteSong\FavoriteSongController@list')->name('favoritesong.list');
 Route::get('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongController@isfavorite')->name('favoritesong.isfavorite');
 
-Route::get('comments/{id}', 'Comment\CommentController@index')->name('comment.index');
+Route::get('comments/song/{id}', 'Comment\CommentController@index')->name('comment.index');
