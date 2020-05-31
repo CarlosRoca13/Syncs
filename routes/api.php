@@ -8,7 +8,7 @@ Route::resource('sheets', 'Sheet\SheetController', ['except'=>['create', 'edit',
 Route::resource('sheetinstrument', 'SheetInstrument\SheetInstrumentController', ['only'=>['store', 'index']]);
 Route::resource('playlist', 'Playlist\PlaylistController', ['except'=>['create', 'edit', 'show']]);
 Route::resource('playlistitem', 'PlaylistItem\PlaylistItemController', ['only'=>['store', 'index']]);
-Route::resource('comments', 'Comment\CommentController', ['except'=>['create', 'edit', 'update']]);
+Route::resource('comments', 'Comment\CommentController', ['except'=>['create', 'edit', 'update', 'index']]);
 
 
 Route::delete('/playlistitem/{playlistID}/{sheetID}','PlaylistItem\PlaylistItemController@destroy')->name('playlistitem.destroy');
@@ -53,3 +53,5 @@ Route::post('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongControlle
 Route::delete('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongController@remove')->name('favoritesong.remove');
 Route::get('favorite/{clientid}', 'FavoriteSong\FavoriteSongController@list')->name('favoritesong.list');
 Route::get('favorite/{sheetid}/{clientid}', 'FavoriteSong\FavoriteSongController@isfavorite')->name('favoritesong.isfavorite');
+
+Route::get('comments/{id}', 'Comment\CommentController@index')->name('comment.index');
