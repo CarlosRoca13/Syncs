@@ -76,3 +76,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## .env
+
+Afegir estes dos linies
+MAIL_DRIVER=sendgrid
+SENDGRID_API_KEY='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'
+
+Comentar el MAIL_MAILER
+
