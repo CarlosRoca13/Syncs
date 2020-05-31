@@ -46,6 +46,9 @@ return [
         'ses' => [
             'transport' => 'ses',
         ],
+        'sendgrid' => [
+            'transport' => 'sendgrid',
+        ],
 
         'sendmail' => [
             'transport' => 'sendmail',
