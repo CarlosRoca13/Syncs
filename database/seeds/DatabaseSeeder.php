@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
         DB::table('comments')->insert([
             'clients_id' => 1,
             'sheets_id' => 1,
-            'dateTime' => Carbon::now(),
+            'date_time' => Carbon::now(),
             'description' => Str::random(10),
         ]);
     }

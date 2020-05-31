@@ -18,8 +18,9 @@ class CommentController extends ApiController
      */
     public function index($id)
     {
-        $comments = DB::table('comments')->where('sheets_id', '=', $id)->orderBy('dateTime', 'desc')->get();
-        return $this->showAll($comments);
+        return DB::select('SELECT com.id, com.description, com.date_time, com.response, com.sheets_id, com.clients_id, c.username, (SELECT CASE WHEN avatar <> null THEN \'http://localhost:8000/api/clients/avatar/\' || id ELSE \'https://i.ya-webdesign.com/images/placeholder-image-png-7.png\' END AS avatar FROM clients WHERE id = com.clients_id) as avatar FROM comments as com JOIN clients as c ON(com.clients_id = c.id) WHERE sheets_id = :id ORDER BY com.date_time', [
+            'id' => $id
+        ]);
     }
 
     /**

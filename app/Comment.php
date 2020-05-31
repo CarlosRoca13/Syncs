@@ -14,7 +14,7 @@ class Comment extends Model
     protected $fillable = [
         'clients_id',
         'sheets_id',
-        'dateTime',
+        'date_time',
         'description',
         'response',
     ];
