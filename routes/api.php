@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::resource('clients', 'Client\ClientController', ['except'=>['create', 'edit', 'show', 'update']]);
-Route::resource('sheets', 'Sheet\SheetController', ['except'=>['create', 'edit', 'show']]);
+Route::resource('sheets', 'Sheet\SheetController', ['except'=>['create', 'edit', 'show', 'update']]);
 Route::resource('sheetinstrument', 'SheetInstrument\SheetInstrumentController', ['only'=>['store', 'index']]);
 Route::resource('playlist', 'Playlist\PlaylistController', ['except'=>['create', 'edit', 'show']]);
 Route::resource('playlistitem', 'PlaylistItem\PlaylistItemController', ['only'=>['store', 'index']]);
@@ -33,6 +33,7 @@ Route::get('/search/song/{name}','Search\SearchController@searchsong')->name('se
 Route::get('/search/playlist/{name}','Search\SearchController@searchplaylist')->name('search.searchplaylist');
 Route::get('/sheetinstrument/{sheetId}','SheetInstrument\SheetInstrumentController@showbysheet')->name('search.showbysheet');
 Route::get('/artists', 'Sheet\SheetController@getartists')->name('search.getartists');
+Route::post('/sheets/{id}','Sheet\SheetController@update')->name('sheet.update');
 
 Route::put('/sheets/upview/{id}','Sheet\SheetController@upview')->name('sheet.upview');
 Route::put('/sheets/uplike/{sheets_id}/{clients_id}','LikedSong\LikedSongController@uplike')->name('likedsong.uplike');

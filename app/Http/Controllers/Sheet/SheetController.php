@@ -108,27 +108,17 @@ class SheetController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sheet $sheet)
+    public function update(Request $request, $id)
     {
-        $sheet->fill($request->only([
-            'name',
-            'clientId',
-            'description',
-            'key',
-            'mainGenre',
-            'likes',
-            'dislikes',
-            'views',
-            'downolads',
-            'image',
-        ]));
+        $instance = DB::table('sheets')->where('id', '=', $id)->get();
+        $resultArray = json_decode(json_encode($instance), true);
+        $updateData['name'] = ($request['name'] != null) ? $request['name'] : $resultArray[0]['name'];
+        $updateData['description'] = ($request['description'] != null) ? $request['description'] : $resultArray[0]['description'];
+        $updateData['key'] = ($request['key'] != null) ? $request['key'] : $resultArray[0]['key'];
+        $updateData['main_genre'] = ($request['main_genre'] != null) ? $request['main_genre'] : $resultArray[0]['main_genre'];
+        $updateData['image'] = ($request['image'] != null) ? $request->avatar->store('images', 'local') : $resultArray[0]['image'];
 
-        if($sheet->isClean()){
-            return $this->errorResponse('Debe especificar al menos un valor diferente para actuaizar', 422);
-        }
-        $sheet->save();
-
-        return $this->showOne($sheet);
+        return DB::table('sheets')->where('id','=', $id)->update($updateData);
     }
 
     /**
