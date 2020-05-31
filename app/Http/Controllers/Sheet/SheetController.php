@@ -116,7 +116,7 @@ class SheetController extends ApiController
         $updateData['description'] = ($request['description'] != null) ? $request['description'] : $resultArray[0]['description'];
         $updateData['key'] = ($request['key'] != null) ? $request['key'] : $resultArray[0]['key'];
         $updateData['main_genre'] = ($request['main_genre'] != null) ? $request['main_genre'] : $resultArray[0]['main_genre'];
-        $updateData['image'] = ($request['image'] != null) ? $request->avatar->store('images', 'local') : $resultArray[0]['image'];
+        $updateData['image'] = ($request['image'] != null) ? $request->image->store('images', 'local') : $resultArray[0]['image'];
 
         DB::table('sheets')->where('id','=', $id)->update($updateData);
         return $id;
