@@ -20,9 +20,9 @@ class CreateSheetInstrumentsTable extends Migration
             $table->string('pdf');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('sheets_id')->references('id')->on('sheets');
 
             $table->unique(['sheets_id', 'instrument']);
+            $table->foreign('sheets_id')->references('id')->on('sheets')->onDelete('cascade');
         });
     }
 
