@@ -18,8 +18,7 @@ class ClientController extends ApiController
      */
     public function index()
     {
-        $clients = Client::all();
-        return $this->showAll($clients);
+        return DB::select('SELECT c.id, c.name, c.lastname, c.email, c.username, c.password, c.verified, c.avatar, c.birthday, (SELECT count(*) FROM follows WHERE user_id = c.id) as followers FROM clients as c');
     }
 
     /**
