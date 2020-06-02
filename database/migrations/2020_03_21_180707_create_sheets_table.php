@@ -26,7 +26,7 @@ class CreateSheetsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('clients_id')->references('id')->on('clients');
+            $table->foreign('clients_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 
