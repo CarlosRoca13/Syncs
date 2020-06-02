@@ -147,6 +147,6 @@ class SheetController extends ApiController
 
     public function getartists()
     {
-        return DB::select('SELECT DISTINCT s.clients_id, c.username, c.avatar FROM sheets as s JOIN clients as c ON (s.clients_id = c.id)');
+        return DB::select('SELECT DISTINCT s.clients_id, c.username, c.avatar, (SELECT count(*) FROM follows WHERE user_id = s.clients_id) as followers FROM sheets as s JOIN clients as c ON (s.clients_id = c.id)');
     }
 }
